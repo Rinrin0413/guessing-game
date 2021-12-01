@@ -1,0 +1,12 @@
+[package]
+name = "guessing-game"
+version = "0.1.0"
+authors = ["Rinrin.py"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+
+# 依存ファイルだよ★
+rand = "0.3.14" # 乱数
