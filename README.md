@@ -15,7 +15,7 @@
 
 <br />
 
-[MIT License](./LICENSE)
+[![MIT](https://img.shields.io/github/license/Rinrin0413/guessing-game?color=%23A11D32&style=for-the-badge)](./LICENSE)
 
 <br />
 
