@@ -1,9 +1,21 @@
 // [Rust入門書 : 第2章] https://doc.rust-jp.rs/book-ja/ch02-00-guessing-game-tutorial.html
 
 // std(標準ライブラリ)であるio(入出力ライブラリ)
-use std::io; // io(入出力)モジュール
+use std::{ io, cmp::Ordering }; // io(入出力)モジュール, 比較モジュール
 use rand::Rng; //乱数モジュール
-use std::cmp::Ordering; //比較モジュール
+
+struct Guess { value: i32 }
+impl Guess {
+    pub fn new(value:i32) -> Guess {
+        if 1 > value || 100 < value { // if 1未満 or 100より大きい {}
+            panic!("範囲外ゐ値 {} を取得, 1~100まてゐ整数を入力(しなさい)", value)
+        }
+        Guess { value } // 初期化省略記法でGuessインスタンスを返す
+    }
+    // インスタンス.value では取り出せない(非公開)ので
+    // 専用のメソッドを実装
+    pub fn get_value(&self) -> i32 { self.value }
+}
 
 fn main() {
     // rand::thread_rng関数は gen_rangeメソッド(乱数生成器)を返す
@@ -52,16 +64,22 @@ fn main() {
         // perseメソッドは天才的頭脳で数値型を示唆してくれる
         // ":" でコンパイラに変え先変数の型を注釈する合図をして u32(上限が低い自然数型)を注釈する
         // これで secret_number変数と比較ができる
+        // ここまで u32型にする前提で話したが更なる素晴らしい実装を行う上で i32型にする
         // match式については少し下の説明を参照しろ
-        let guess: u32 = match guess.trim().parse() {
+        let guess:i32 = match guess.trim().parse() {
             // parseメソッドはエラりやすいので対処してあげる
             // match式がperseの返す列挙子[Ok || Err]に応じて分枝
-            Ok(num) => num, // num (guessのu32型の奴)を返す
+            Ok(num) => num, // num (guessのi32型の奴)を返す
             Err(_) => { // "_" は何でもいいからマッチしたらという意味。
                 println!("\n貴樣！\n数價を入力(しなさい)");
                 continue; // ここでのcontinue はloopをやり直し。
-            } 
+            }
         };
+        
+        // new関連関数で Guessインスタンス としてi32を取り込む
+        let guess = Guess::new(guess).get_value();
+        // 1~100の範囲外な場合はパニックを起こす
+        // get_valueメソッドで値を取り出す(取り出さないと Guess型が代入されてしまう)
 
         // この {} はプレースホルダーという
         println!("貴樣ゐ予想: {}", guess); // 次のように予想しました: {}
@@ -79,7 +97,18 @@ fn main() {
             Ordering::Greater => println!("過巨大だ！！"), //大きすぎ！
             Ordering::Equal => {
                 println!("貴樣ゐ勝利てず。\n賞金ゐ1000000000000元を贈呈ずゑ！！"); //やったね！
-                break; // プログラムの終了
+                loop {
+                    println!("ウィンドウを閉じる場合は y と入力...");
+                    let mut is_break = String::new();
+                    io::stdin().read_line(&mut is_break).expect("何力問題が発生レだ！");
+                    if is_break.trim() ==  String::from("y") { 
+                        break // いまいる match から抜け出してその先にある break で死
+                    } else {
+                        continue // ウィンドウ閉じるかを聞くループでコンティニュ
+                    }
+
+                }
+                break; // プログラムの正式終了
             }
         }
     }
