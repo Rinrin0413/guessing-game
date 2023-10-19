@@ -7,13 +7,6 @@
 
 ## 使い方
 
-## Windows
-
-1. ["/assets/guessing-game_v1.0.1.exe"](/assets/guessing-game_v1.0.1.exe) をダウンロード
-1. ダウンロードした exeファイルを起動
-
-## それ以外の環境
-
 実行ファイルを置くのが面倒なので自分でビルドして:
 
 ```bash
