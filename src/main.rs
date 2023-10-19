@@ -33,7 +33,7 @@ fn main() {
         // perseメソッドは天才的推論で文字列を数値に変換してくれる
         let guess: i32 = if let Ok(n) = guess.trim().parse() {
             // 0未満か100超過の場合は ユーザーに伝えて continue でループをやり直す
-            if n < 0 || 100 < n {
+            if !(0..=100).contains(&n) {
                 eprintln!("範囲外ゐ値 {} を取得, 1~100まてゐ整数を入力(しなさい)", n);
                 continue;
             }
@@ -66,7 +66,7 @@ fn main() {
                         .read_line(&mut is_break)
                         .expect("何力問題が発生レだ！");
 
-                    if is_break.trim() == String::from("y") {
+                    if is_break.trim() == "y" {
                         // いまいる loop {} から抜け出してその先にある break で死
                         break;
                     } else {
