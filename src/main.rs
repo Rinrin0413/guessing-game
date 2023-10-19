@@ -34,7 +34,7 @@ fn main() {
             };
 
             println!("貴樣ゐ予想: {}", guess);
-            
+
             // cmpメソッドは引数に与えられた値と比較して std::cmp::Ordering列挙型の列挙子を返す
             // Ordering列挙型の列挙子は Less, Greater, Equal の3つがある
             // match文を使って列挙子に応じた処理を行う
@@ -44,7 +44,7 @@ fn main() {
             if let Status::Continue = status {
                 continue;
             }
-            
+
             // それ以外(つまりクリア後)の場合はこのループを抜ける
             break;
         }
@@ -91,7 +91,7 @@ fn read() -> Result<i32, ()> {
         eprintln!("\n貴樣！\n数價を入力(しなさい)");
         return Err(());
     };
-    
+
     Ok(guess)
 }
 
@@ -107,9 +107,7 @@ fn compare(ord: Ordering) -> Status {
                 println!("もラ一度游ぶ？ [y/n]");
 
                 let mut yn = String::new();
-                stdin()
-                    .read_line(&mut yn)
-                    .expect("何力問題が発生レだ！");
+                stdin().read_line(&mut yn).expect("何力問題が発生レだ！");
 
                 match yn.trim() {
                     "y" => return Status::Restart,
