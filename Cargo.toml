@@ -1,15 +1,12 @@
 [package]
 name = "guessing-game"
-description = "[Rust入門書 : 第2章] https://doc.rust-jp.rs/book-ja/ch02-00-guessing-game-tutorial.html"
-version = "0.1.0"
-authors = ["Rinrin.rs rinrin0413.valley@gmail.com"]
-license = "[MIT] MIT License"
-repository = "https://github.com/Rinrin0413/guessing-game"
-edition = "2018"
-
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+description = "Rust入門書第2章参照: https://doc.rust-jp.rs/book-ja/ch02-00-guessing-game-tutorial.html"
+version = "1.1.0"
+authors = ["Rinrin.rs <rinrin0413.valley@gmail.com>"]
+license-file = "LICENSE"
+repository = "https://github.com/Rinrin0413/guessing-game.git"
+readme = "README.md"
+edition = "2021"
 
 [dependencies]
-
-# 依存ファイルだよ★
-rand = "0.3.14" # 乱数
+rand = "0.3.14"
