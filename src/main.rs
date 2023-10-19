@@ -1,8 +1,9 @@
 // Rust入門書第2章参照: https://doc.rust-jp.rs/book-ja/ch02-00-guessing-game-tutorial.html
 
-// std(標準ライブラリ)
-use std::{ io::stdin, cmp::Ordering }; // io(入出力)モジュール, 比較モジュール
-use rand::Rng; // RNG
+// RNG
+use rand::Rng;
+// IO(入出力)モジュール, 比較モジュール
+use std::{cmp::Ordering, io::stdin};
 
 fn main() {
     // これが当てるべき数値
@@ -19,10 +20,11 @@ fn main() {
         let mut guess = String::new();
 
         // stdin関数の返す std::io::Stdin型は ターミナルの標準入力(stdin)へのハンドル
-        // read_lineメソッド ユーザーに入力された文字列を 引数として指定された可変変数に格納する
-        stdin().read_line(&mut guess)
+        stdin()
+            // read_lineメソッドは ユーザーに入力された文字列を 引数として指定された可変変数に格納する
+            .read_line(&mut guess)
             // 読み取りに失敗した場合はパニックさせる
-            .expect("行ゐ読込に失敗レた！\n大變た！\n刂トラ亻."); 
+            .expect("行ゐ読込に失敗レた！\n大變た！\n刂トラ亻.");
 
         // guess変数(String)と secret_number変数(u32)では型が異っていて比較できない
         // なので guess変数を u32型にシャドーイングで変換する
@@ -60,16 +62,17 @@ fn main() {
                     // ユーザーの選択を持たせる変数
                     let mut is_break = String::new();
 
-                    stdin().read_line(&mut is_break).expect("何力問題が発生レだ！");
+                    stdin()
+                        .read_line(&mut is_break)
+                        .expect("何力問題が発生レだ！");
 
-                    if is_break.trim() ==  String::from("y") { 
+                    if is_break.trim() == String::from("y") {
                         // いまいる loop {} から抜け出してその先にある break で死
-                        break
+                        break;
                     } else {
                         // y 以外の文字列が入力された場合は continue でループをやり直す
-                        continue
+                        continue;
                     }
-
                 }
 
                 // ロープを抜ける
