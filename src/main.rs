@@ -34,7 +34,7 @@ fn main() {
         let guess: i32 = if let Ok(n) = guess.trim().parse() {
             // 0未満か100超過の場合は ユーザーに伝えて continue でループをやり直す
             if !(0..=100).contains(&n) {
-                eprintln!("範囲外ゐ値 {} を取得, 1~100まてゐ整数を入力(しなさい)", n);
+                eprintln!("範囲外ゐ値 {} を取得, 0~100まてゐ整数を入力(しなさい)", n);
                 continue;
             }
             n
